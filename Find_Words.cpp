@@ -36,14 +36,13 @@ char matrix[NUM_ROWS][NUM_COLS] = {
 bool findHorizontalWord(char matrix[NUM_ROWS][NUM_COLS], const string& word) {
     for (int x = 0; x < NUM_ROWS; ++x) {
         for (int y = 0; y <= NUM_COLS - word.length(); ++y) {
-            bool AdaKata = true;
-            for (int z = 0; z < word.length(); ++z) {
+            int z;
+            for (z = 0; z < word.length(); ++z) {
                 if (matrix[x][y + z] != word[z]) {
-                    AdaKata= false;
                     break;
                 }
             }
-            if (AdaKata) return true;
+            if (z == word.length()) return true;
         }
     } return false;
 }
@@ -51,14 +50,13 @@ bool findHorizontalWord(char matrix[NUM_ROWS][NUM_COLS], const string& word) {
 bool findVerticalWord(char matrix[NUM_ROWS][NUM_COLS], const string& word) {
     for (int x = 0; x <= NUM_ROWS - word.length(); ++x) {
         for (int y = 0; y < NUM_COLS; ++y) {
-            bool AdaKata = true;
-            for (int z = 0; z < word.length(); ++z) {
+            int z;
+            for (z = 0; z < word.length(); ++z) {
                 if (matrix[x + z][y] != word[z]) {
-                    AdaKata = false;
                     break;
                 }
             }
-            if (AdaKata) return true;
+            if (z == word.length()) return true;
         }
     }return false;
 }
@@ -67,58 +65,54 @@ bool findDiagonalWord(char matrix[NUM_ROWS][NUM_COLS], const string& word) {
     // Mencari diagonal kiri atas ke kanan bawah
     for (int x = 0; x <= NUM_ROWS - word.length(); ++x) {
         for (int y = 0; y <= NUM_COLS - word.length(); ++y) {
-            bool AdaKata = true;
-            for (int z = 0; z < word.length(); ++z) {
+            int z;
+            for (z = 0; z < word.length(); ++z) {
                 if (matrix[x + z][y + z] != word[z]) {
-                    AdaKata = false;
                     break;
                 }
             }
-            if (AdaKata) true;
+            if (z == word.length()) return true;
         }
     }
 
     // Mencari diagonal kanan atas ke kiri bawah
     for (int x = 0; x <= NUM_ROWS - word.length(); ++x) {
         for (int y = NUM_COLS - 1; y >= word.length() - 1; --y) {
-            bool AdaKata = true;
-            for (int z = 0; z < word.length(); ++z) {
+            int z;
+            for (z = 0; z < word.length(); ++z) {
                 if (matrix[x + z][y - z] != word[z]) {
-                    AdaKata = false;
                     break;
                 }
             }
-            if (AdaKata) return true;
+            if (z == word.length()) return true;
         }
     }
 
     // Mencari diagonal kiri bawah ke kanan atas
     for (int x = NUM_ROWS - 1; x >= word.length() - 1; --x) {
         for (int y = 0; y <= NUM_COLS - word.length(); ++y) {
-            bool AdaKata = true;
-            for (int z = 0; z < word.length(); ++z) {
+            int z;
+            for (z = 0; z < word.length(); ++z) {
                 if (matrix[x - z][y + z] != word[z]) {
-                    AdaKata = false;
                     break;
                 }
             }
-            if (AdaKata) return true;
+            if (z == word.length()) return true;
         }
     }
-    
+
     // Mencari diagonal kanan bawah ke kiri atas
     for (int x = NUM_ROWS - 1; x >= word.length() - 1; --x) {
         for (int y = NUM_COLS - 1; y >= word.length() - 1; --y) {
-            bool AdaKata = true;
-            for (int z = 0; z < word.length(); ++z) {
+            int z;
+            for (z = 0; z < word.length(); ++z) {
                 if (matrix[x - z][y - z] != word[z]) {
-                    AdaKata = false;
                     break;
                 }
             }
-            if (AdaKata) return true;
+            if (z == word.length()) return true;
         }
-    } return false;
+    }return false;
 }
 
 string toUpperCase(string str) {
@@ -143,11 +137,12 @@ int main() {
     
     for (const string& k : kata) {
         string upperKata = toUpperCase(k);
-        bool AdaKata = findHorizontalWord(matrix, upperKata) || findVerticalWord(matrix, upperKata) || findDiagonalWord(matrix, upperKata);
-        if (AdaKata) {
+        bool found = findHorizontalWord(matrix, upperKata) || findVerticalWord(matrix, upperKata) || findDiagonalWord(matrix, upperKata);
+        if (found) {
             cout << "Ada" << endl;
         } else {
             cout << "Tidak Ada" << endl;
         }
-    }   return 0;
+    }   
+    return 0;
 }
