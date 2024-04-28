@@ -23,12 +23,3 @@
         {'B', 'F', 'R', 'E', 'E', 'Z', 'I', 'N', 'G', 'R', 'A', 'I', 'N', 'S', 'L', 'I', 'L', 'G', 'T', 'M', 'E', 'L', 'T'},
         {'H', 'O', 'P', 'Y', 'L', 'W', 'H', 'F', 'M', 'N', 'F', 'F', 'U', 'F', 'P', 'S', 'W', 'X', 'N', 'U', 'M', 'M', 'V'}
     };
-
-string toUpperCase(string str) {
-    for (char &c : str) {
-        if (c >= 'a' && c <= 'z') {
-            c = c - 'a' + 'A'; 
-        }
-    } return str;
-}
-
