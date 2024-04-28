@@ -1,10 +1,13 @@
-bool Horizontal(const string& word, int startX, int startY) {
-    int wordLen = word.length();
-    for(int i = 0; i < wordLen; i++) {
-        int x = startX;
-        int y = startY + i;
-        if(y < 0 || y >= 24 || toupper(matrix[x][y]) != toupper(word[i]))
-            return false;
-    }
-    return true;
+bool findHorizontalWord(char matrix[NUM_ROWS][NUM_COLS], const string& word) {
+    for (int x = 0; x < NUM_ROWS; ++x) {
+        for (int y = 0; y <= NUM_COLS - word.length(); ++y) {
+            int z;
+            for (z = 0; z < word.length(); ++z) {
+                if (matrix[x][y + z] != word[z]) {
+                    break;
+                }
+            }
+            if (z == word.length()) return true;
+        }
+    } return false;
 }
