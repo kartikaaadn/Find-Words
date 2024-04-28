@@ -87,7 +87,7 @@ bool findDiagonalWord(char matrix[NUM_ROWS][NUM_COLS], const string& word) {
             if (z == word.length()) return true;
         }
     }
-
+    
     // Mencari diagonal kiri bawah ke kanan atas
     for (int x = NUM_ROWS - 1; x >= word.length() - 1; --x) {
         for (int y = 0; y <= NUM_COLS - word.length(); ++y) {
@@ -137,8 +137,8 @@ int main() {
     
     for (const string& k : kata) {
         string upperKata = toUpperCase(k);
-        bool found = findHorizontalWord(matrix, upperKata) || findVerticalWord(matrix, upperKata) || findDiagonalWord(matrix, upperKata);
-        if (found) {
+        bool AdaKata = findHorizontalWord(matrix, upperKata) || findVerticalWord(matrix, upperKata) || findDiagonalWord(matrix, upperKata);
+        if (AdaKata) {
             cout << "Ada" << endl;
         } else {
             cout << "Tidak Ada" << endl;
